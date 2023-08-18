@@ -1,11 +1,8 @@
-# Flask Api Starter Kit [![CircleCI](https://circleci.com/gh/antkahn/flask-api-starter-kit/tree/master.svg?style=svg)](https://circleci.com/gh/antkahn/flask-api-starter-kit/tree/master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/antkahn/flask-api-starter-kit/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/antkahn/flask-api-starter-kit/?branch=master)
+# Flask API
 
 This starter kit is designed to allow you to create very fast your Flask API.
 
 The primary goal of this project is to remain as **unopinionated** as possible. Its purpose is not to dictate your project structure or to demonstrate a complete sample application, but to provide a set of tools intended to make back-end development robust, easy, and, most importantly, fun.
-
-This starter kit comes with a [tutorial](https://github.com/antkahn/flask-api-starter-kit/blob/tutorial/doc/installation.md).
-Check it out if you want a quick tutorial on how to use Flask with this architecure.
 
 ## Table of Contents
 
@@ -26,31 +23,30 @@ You will need [docker](https://docs.docker.com/engine/installation/) and [docker
 
 ## Getting Started
 
-First, clone the project:
-
-```bash
-$ git clone https://github.com/antkahn/flask-api-starter-kit.git <my-project-name>
-$ cd <my-project-name>
-```
+First, clone the project by clicking on [![](https://badgen.net/badge/Clone%20this%20/Project/5B3ADF?icon=https://runme.dev/img/logo.svg)](https://runme.dev/api/runme?repository=https%3A%2F%2Fgithub.com%2Fchristian-bromann%2Fflask-api.git&fileToOpen=README.md)
 
 Then install dependencies and check that it works
 
 ```bash
-$ make server.install      # Install the pip dependencies on the docker container
-$ make server.start        # Run the container containing your local python server
+$ runme run server.install      # Install the pip dependencies on the docker container
+$ runme run server.start        # Run the container containing your local python server
 ```
 
-If everything works, you should see the available routes [here](http://127.0.0.1:3000/application/spec).
+If everything works, you should see the available routes at
+
+```sh
+open http://127.0.0.1:3000/application/spec
+```
 
 The API runs locally on docker containers. You can easily change the python version you are willing to use [here](https://github.com/antkahn/flask-api-starter-kit/blob/master/docker-compose.yml#L4), by fetching a docker image of the python version you want.
 
 ## Commands
 
-You can display availables make commands using `make`.
+You can display availables make commands using [`runme`](https://runme.dev/).
 
-While developing, you will probably rely mostly on `make server.start`; however, there are additional scripts at your disposal:
+While developing, you will probably rely mostly on `runme run server.start`; however, there are additional scripts at your disposal:
 
-| `make <script>`      | Description                                                                  |
+| `runme run <script>` | Description                                                                  |
 | -------------------- | ---------------------------------------------------------------------------- |
 | `help`               | Display availables make commands                                             |
 | `server.install`     | Install the pip dependencies on the server's container.                      |
@@ -72,13 +68,11 @@ While developing, you will probably rely mostly on `make server.start`; however,
 
 The database is in [PostgreSql](https://www.postgresql.org/).
 
-Locally, you can connect to your database using :
+Locally, you can connect to your database using:
 
 ```bash
-$ make database.connect
+$ runme run database.connect
 ```
-
-However, you will need before using this command to change the docker database container's name [here](https://github.com/antkahn/flask-api-starter-kit/blob/master/package.json#L6).
 
 This kit contains a built in database versioning using [alembic](https://pypi.python.org/pypi/alembic).
 Once you've changed your models, which should reflect your database's state, you can generate the migration, then upgrade or downgrade your database as you want. See [Commands](#commands) for more information.
@@ -122,8 +116,8 @@ The application structure presented in this boilerplate is grouped primarily by 
 To develop locally, here are your two options:
 
 ```bash
-$ make server.start           # Create the containers containing your python server in your terminal
-$ make server.daemon          # Create the containers containing your python server as a daemon
+$ runme run server.start           # Create the containers containing your python server in your terminal
+$ runme run server.daemon          # Create the containers containing your python server as a daemon
 ```
 
 The containers will reload by themselves as your source code is changed.
@@ -136,7 +130,7 @@ You can add objects in your database that will only be used in your tests, see e
 You can run your tests in their own container with the command:
 
 ```bash
-$ make test
+$ runme run test
 ```
 
 ## Lint
@@ -144,7 +138,7 @@ $ make test
 To lint your code using flake8, just run in your terminal:
 
 ```bash
-$ make test.lint
+$ runme run test.lint
 ```
 
 It will run the flake8 commands on your project in your server container, and display any lint error you may have in your code.
@@ -154,8 +148,8 @@ It will run the flake8 commands on your project in your server container, and di
 The code is formatted using [Black](https://github.com/python/black) and [Isort](https://pypi.org/project/isort/). You have the following commands to your disposal:
 
 ```bash
-$ make format.black # Apply Black on every file
-$ make format.isort # Apply Isort on every file
+$ runme run format.black # Apply Black on every file
+$ runme run format.isort # Apply Isort on every file
 ```
 
 ## Swagger
@@ -163,5 +157,21 @@ $ make format.isort # Apply Isort on every file
 Your API needs a description of it's routes and how to interact with them.
 You can easily do that with the swagger package included in the starter kit.
 Simply add a docstring to the resources of your API like in the `user` example.
-The API description will be available [here](http://127.0.0.1:3000/application/spec).
-The Swagger UI will be available [here](http://127.0.0.1:3000/apidocs/).
+
+The API description will be available at:
+
+```sh
+open http://127.0.0.1:3000/application/spec
+```
+
+The Swagger UI will be available at:
+
+```sh
+open http://127.0.0.1:3000/apidocs/
+```
+
+---
+
+### Credtis
+
+This project was heavily inspired by [`antkahn/flask-api-starter-kit`](https://github.com/antkahn/flask-api-starter-kit).
