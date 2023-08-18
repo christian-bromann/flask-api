@@ -1,5 +1,6 @@
 import json
 import unittest
+
 import warnings
 
 from server import server
@@ -11,7 +12,7 @@ class TestSwagger(unittest.TestCase):
         cls.client = server.test_client()
 
     def test_get_spec(self):
-        """ The GET on /spec should return a 200 """
+        """The GET on /spec should return a 200"""
 
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", message="unclosed file")

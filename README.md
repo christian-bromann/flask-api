@@ -27,7 +27,7 @@ First, clone the project by clicking on [![](https://badgen.net/badge/Clone%20th
 
 Then install dependencies and check that it works
 
-```bash
+```bash { name=start }
 $ runme run server.install      # Install the pip dependencies on the docker container
 $ runme run server.start        # Run the container containing your local python server
 ```

@@ -1,5 +1,6 @@
 import json
 import unittest
+
 import warnings
 
 from server import server
@@ -13,7 +14,7 @@ class TestSwaggerCoverage(unittest.TestCase):
         cls.THRESHOLD = 100
 
     def test_swagger_coverage(self):
-        """ The swagger coverage should be 100% """
+        """The swagger coverage should be 100%"""
 
         self.color_print("yellow", "\n##### SWAGGER COVERAGE #####")
 
@@ -34,7 +35,7 @@ class TestSwaggerCoverage(unittest.TestCase):
         self.assertTrue(coverage >= self.THRESHOLD)
 
     def retrieve_swagger_specs(self):
-        """ Fetch the swagger specs """
+        """Fetch the swagger specs"""
 
         # suppress flasgger unclosed file warnings
         with warnings.catch_warnings():
@@ -46,7 +47,7 @@ class TestSwaggerCoverage(unittest.TestCase):
         return swagger_specs
 
     def retrieve_covered_methods_number(self, rules, swagger_specs):
-        """ Return the number of covered methods and the number of methods """
+        """Return the number of covered methods and the number of methods"""
         methods_total = 0
         covered_methods = 0
         for rule in rules:
@@ -67,7 +68,7 @@ class TestSwaggerCoverage(unittest.TestCase):
 
     @staticmethod
     def filter_methods(methods):
-        """ Filter methods OPTIONS and HEAD """
+        """Filter methods OPTIONS and HEAD"""
         return [method for method in methods if method not in ["OPTIONS", "HEAD"]]
 
     @staticmethod
@@ -86,16 +87,16 @@ class TestSwaggerCoverage(unittest.TestCase):
         )
 
     def filter_rules(self, rules):
-        """ Filter rules that do not need to be documented """
+        """Filter rules that do not need to be documented"""
         return [rule for rule in rules if not self.is_banned_rule(rule)]
 
     def is_banned_rule(self, rule):
-        """ Check if rule should be banned """
+        """Check if rule should be banned"""
         return any(banned_rule in str(rule) for banned_rule in self.BANNED_RULES)
 
     @staticmethod
     def color_print(color, message):
-        """ Print message with some nice color """
+        """Print message with some nice color"""
         colors = {
             "green": "\033[92m",
             "yellow": "\033[93m",

@@ -20,7 +20,7 @@ class TestUser(unittest.TestCase):
         db.drop_all()
 
     def test_get(self):
-        """ The GET on `/user` should return an user """
+        """The GET on `/user` should return an user"""
         UserRepository.create(first_name="John", last_name="Doe", age=25)
         response = self.client.get("/application/user/Doe/John")
 
@@ -32,7 +32,7 @@ class TestUser(unittest.TestCase):
         )
 
     def test_create(self):
-        """ The POST on `/user` should create an user """
+        """The POST on `/user` should create an user"""
         response = self.client.post(
             "/application/user/Doe/John",
             content_type="application/json",
@@ -48,7 +48,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(User.query.count(), 1)
 
     def test_update(self):
-        """ The PUT on `/user` should update an user's age """
+        """The PUT on `/user` should update an user's age"""
         UserRepository.create(first_name="John", last_name="Doe", age=25)
         response = self.client.put(
             "/application/user/Doe/John",
